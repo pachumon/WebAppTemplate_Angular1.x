@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">
+        Gift Kudos
+    </h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <form class="form-horizontal" id="rewardsForm">
+        <fieldset>
+            <div class="form-group">
+                <label for="nameTo" class="col-lg-3 control-label">To :</label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control" disabled="disabled" id="nameto" placeholder="Name" ng-model="vm.rewardsform.currentuser.Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nameFrom" class="col-lg-3 control-label">From :</label>
+                <div class="col-lg-8">
+                    <select class="form-control" id="nameFrom" ng-model="vm.rewardsform.selecteduser">
+                        <option ng-value="0">--Select--</option>
+                        <option ng-repeat="optionuser in vm.users" ng-value="optionuser.Id">{{optionuser.Name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="comment" class="col-lg-3 control-label">Comment :</label>
+                <div class="col-lg-8">
+                    <textarea class="form-control" ng-model="rewardsform.comment" rows="3" maxlength="100" id="comment" placeholder="comment"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Kudos" class="col-lg-3 control-label">Kudos :</label>
+                <div class="col-lg-8">
+                    <select class="form-control" id="kudos" ng-model="vm.rewardsform.selectedkudos">
+                        <option ng-value="0">--Select--</option>
+                        <option ng-repeat="optionuser in [1,2,3,4,5]" ng-value="optionuser">{{optionuser}}</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+</div>

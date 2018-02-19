@@ -145,3 +145,14 @@ body {
     display: table-cell;
     cursor: pointer;
 }
+
+.tabbutton{
+    border:1px solid gray;
+    border-radius:5px;
+    font-weight: bold;
+}
+
+.table td, th {
+    text-align: center;
+    font-weight:bold;    
+}

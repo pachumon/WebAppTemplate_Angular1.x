@@ -2,23 +2,30 @@
     'use strict';
 
     app.component('home', {
+        transclude: true,
         templateUrl: 'js/app/home/home.component.html',
         controllerAs: 'vm',
         controller: [
-            'toastrService', homeController
-        ]
+            'toastrService','appDataService', homeController
+        ],
+        bindings: {
+            viewdata: '<'
+        },
     });
+    
+    homeController.$inject = ['toastrService','appDataService'];
 
-
-    function homeController(toastrService) {
+    function homeController(toastrService,appDataService) {
         var vm = this;
         
 
-        vm.$onInit = function () {
-            
+        vm.$onInit = function () {            
+           
         }
 
-        
+        vm.$onChanges = function () {
+            vm.viewdata= appDataService.GetAppInitialData();
+        }
 
     }
 })();

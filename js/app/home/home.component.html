@@ -1,5 +1,21 @@
 <div class="jumbotron">
-    <div class="container-fluid"> 
-        put content here
+    <div class="container-fluid">
+        <uib-tabset type="pills">
+            <uib-tab heading="Reward Summary" class="tabbutton">
+                <div style="padding-top: 20px">              
+                    <rewardssummary users="vm.viewdata.Users"></rewardssummary>
+                </div>
+            </uib-tab>
+            <uib-tab heading="Comments" class="tabbutton">
+                <div style="padding-top: 20px">                    
+                    <comments comments="vm.viewdata.Comments"></comments>
+                </div>
+            </uib-tab>
+            <uib-tab heading="Reward Info" class="tabbutton">
+                <div style="padding-top: 20px">
+                    <rewardinfo></rewardinfo>
+                </div>
+            </uib-tab>
+        </uib-tabset>        
     </div>
 </div>

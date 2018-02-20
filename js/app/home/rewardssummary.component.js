@@ -6,7 +6,8 @@
         controller: ['$uibModal', 'appDataService', rewardssummaryController],
         controllerAs: 'vm',
         bindings: {
-            users: '='
+            users: '<',
+            updaterewards: '&'
         },
     });
 
@@ -18,6 +19,9 @@
 
         };
 
+        vm.$onChanges = function (changes) {   
+       
+        }
 
 
         vm.openRewardsModal = function (user) {
@@ -37,7 +41,7 @@
 
             modalInstance.result.then(function (modalData) {
                 //this handles the ok button click of modal dialogue             
-                updateUserRewardData();
+                vm.updaterewards();
             }, function () {
                 //this handles the cancel button click of modal dialogue clean up logic
 
@@ -68,15 +72,6 @@
 
             });
 
-        };
-
-        let updateUserRewardData = function () {
-            debugger;
-            var id = 2;
-            var userIndex = _.findIndex(vm.users, function (input) {
-                return input.Id == id;
-            });
-            
         };
 
     }

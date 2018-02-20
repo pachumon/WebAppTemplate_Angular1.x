@@ -27,6 +27,11 @@
           };
           
         };
+
+        vm.submit = function (isvalid) {
+          //handle the form data
+          vm.ok();
+        };
     
         vm.ok = function () {
           vm.close({ $value: '' });

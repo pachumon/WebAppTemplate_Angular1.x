@@ -12,10 +12,9 @@
                 <td class="username">{{user.Name}}</td>
                 <td class="kudoscount">{{user.KudosCount}}</td>
                 <td>
-                    <a href="#" class="btn btn-primary btn-xs Reward" ng-click="vm.openRewardsModal(user)" data-toggle="modal">Reward $</a>
-                    &nbsp;
-                    <a href="#" class="btn btn-primary btn-xs Redeem" ng-disabled="user.KudosCount<4" ng-click="user.KudosCount>4 && vm.openRedeemModal(user)"
-                        data-toggle="modal">Redeem $</a>
+                    <input type="button" class="btn btn-primary btn-xs Reward" ng-click="vm.openRewardsModal(user)" data-toggle="modal" value="Reward $"> &nbsp;&nbsp;
+                    <input type="button" class="btn btn-primary btn-xs Redeem" ng-disabled="user.KudosCount<4" ng-click="user.KudosCount>4 && vm.openRedeemModal(user)"
+                        data-toggle="modal" value="Redeem $"> 
                 </td>
             </tr>
         </tbody>

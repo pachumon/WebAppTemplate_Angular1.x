@@ -4,42 +4,66 @@
     </h3>
 </div>
 <div class="modal-body" id="modal-body">
-    <form class="form-horizontal" id="rewardsForm">
+    <form class="form-horizontal" name="rewardform" novalidate ng-submit="vm.submit(rewardform.$valid)">
         <fieldset>
             <div class="form-group">
-                <label for="nameTo" class="col-lg-3 control-label">To :</label>
+                <label for="nameto" class="col-lg-3 control-label">To :</label>
                 <div class="col-lg-8">
-                    <input type="text" class="form-control" disabled="disabled" id="nameto" placeholder="Name" ng-model="vm.rewardsform.currentuser.Name">
+                    <input type="text" class="form-control" id="nameto" disabled="disabled" name="nameto" placeholder="Name" ng-model="vm.rewardsform.currentuser.Name">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="nameFrom" class="col-lg-3 control-label">From :</label>
+            <div class="form-group" ng-class="{'has-error':rewardform.namefrom.$invalid && rewardform.namefrom.$touched}">
+                <label for="namefrom" class="col-lg-3 control-label ">From :</label>
                 <div class="col-lg-8">
-                    <select class="form-control" id="nameFrom" ng-model="vm.rewardsform.selecteduser">
+                    <select class="form-control " id="namefrom" name="namefrom" ng-model="vm.rewardsform.selecteduser" selectoption>
                         <option ng-value="0">--Select--</option>
-                        <option ng-repeat="optionuser in vm.users" ng-value="optionuser.Id">{{optionuser.Name}}</option>
+                        <option ng-repeat="optionuser in vm.users " ng-value="optionuser.Id ">{{optionuser.Name}}</option>
                     </select>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="comment" class="col-lg-3 control-label">Comment :</label>
-                <div class="col-lg-8">
-                    <textarea class="form-control" ng-model="rewardsform.comment" rows="3" maxlength="100" id="comment" placeholder="comment"></textarea>
+                <div class="col-lg-8 col-lg-offset-3">
+                    <span class="help-block has-error" ng-messages="rewardform.namefrom.$error" ng-if="rewardform.namefrom.$invalid && rewardform.namefrom.$touched">
+                        <span ng-message="selectoption">
+                            Please choose the person from the drop down list.
+                        </span>
+                    </span>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="Kudos" class="col-lg-3 control-label">Kudos :</label>
-                <div class="col-lg-8">
-                    <select class="form-control" id="kudos" ng-model="vm.rewardsform.selectedkudos">
+            <div class="form-group" ng-class="{'has-error':rewardform.comment.$invalid && rewardform.comment.$touched}">
+                <label for="comment " class="col-lg-3 control-label ">Comment :</label>
+                <div class="col-lg-8 ">
+                    <textarea class="form-control " ng-model="rewardsform.comment " rows="3 " maxlength="100" id="comment" name="comment" placeholder="comment"
+                        required></textarea>
+                </div>
+                <div class="col-lg-8 col-lg-offset-3">
+                    <span class="help-block has-error" ng-messages="rewardform.comment.$error" ng-if="rewardform.comment.$invalid && rewardform.comment.$touched">
+                        <span ng-message="required">
+                            Comment is required.
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':rewardform.kudos.$invalid && rewardform.kudos.$touched}">
+                <label for="kudos" class="col-lg-3 control-label">Kudos :</label>
+                <div class="col-lg-8 ">
+                    <select class="form-control " id="kudos" name="kudos" ng-model="vm.rewardsform.selectedkudos" selectoption>
                         <option ng-value="0">--Select--</option>
-                        <option ng-repeat="optionuser in [1,2,3,4,5]" ng-value="optionuser">{{optionuser}}</option>
+                        <option ng-repeat="optionuser in [1,2,3,4,5] " ng-value="optionuser ">{{optionuser}}</option>
                     </select>
                 </div>
+                <div class="col-lg-8 col-lg-offset-3">
+                    <span class="help-block has-error" ng-messages="rewardform.kudos.$error" ng-if="rewardform.kudos.$invalid && rewardform.kudos.$touched">
+                        <span ng-message="selectoption">
+                            Please choose the kudos from the drop down list.
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-lg-4 col-lg-offset-8">
+                <button class="btn btn-primary" type="submit" ng-disabled="rewardform.$invalid">OK</button>
+                <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
             </div>
         </fieldset>
     </form>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
-    <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
 </div>

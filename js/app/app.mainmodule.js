@@ -2,6 +2,7 @@ var app = angular.module("sampleapp", [
     "ngRoute",
     "ngSanitize",
     "ngAnimate",
+    "ngMessages",
     "ui.bootstrap",
     "toastr"
 ]);
@@ -11,7 +12,8 @@ app.config(["$routeProvider", function ($routeProvider) {
         .when("/", {
             template: "<home viewdata='$resolve.viewdata'></home>",
             resolve:{
-                viewdata:function(appDataService){                                  
+                viewdata:function(appDataService){          
+                            
                     return appDataService.GetAppInitialData();
                 } 
             }

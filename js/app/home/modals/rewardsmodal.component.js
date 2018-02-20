@@ -18,15 +18,20 @@
     var vm = this;
 
     vm.$onInit = function () {
-      vm.users =vm.resolve.users;
-     
-      vm.rewardsform={
-        currentuser:vm.resolve.user,
-        comment:'',
-        selecteduser:0,
-        selectedkudos:0
+      vm.users = vm.resolve.users;
+
+      vm.rewardsform = {
+        currentuser: vm.resolve.user,
+        comment: '',
+        selecteduser: 0,
+        selectedkudos: 0
       };
-      
+
+    };
+
+    vm.submit = function (isvalid) {
+      //handle the form data
+      vm.ok();
     };
 
     vm.ok = function () {

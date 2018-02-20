@@ -1,36 +1,53 @@
 <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">
-            Redeem Kudos
-        </h3>
-    </div>
-    <div class="modal-body" id="modal-body">
-        <form class="form-horizontal" id="rewardsForm">
-            <fieldset>
-                <div class="form-group">
-                    <label for="nameBy" class="col-lg-3 control-label">By :</label>
-                    <div class="col-lg-8">
-                        <input type="text" class="form-control" disabled="disabled" id="nameBy" placeholder="Name" ng-model="vm.redeemform.currentuser.Name">
-                    </div>
-                </div>                
-                <div class="form-group">
-                    <label for="comment" class="col-lg-3 control-label">Comment :</label>
-                    <div class="col-lg-8">
-                        <textarea class="form-control" ng-model="redeemform.comment" rows="3" maxlength="100" id="comment" placeholder="comment"></textarea>
-                    </div>
+    <h3 class="modal-title" id="modal-title">
+        Redeem Kudos
+    </h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <form class="form-horizontal" name="redeemkudosform" novalidate ng-submit="vm.submit(redeemkudosform.$valid)">
+        <fieldset>
+            <div class="form-group">
+                <label for="nameby" class="col-lg-3 control-label">By :</label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control" disabled="disabled" id="nameby" name="nameby" placeholder="Name" ng-model="vm.redeemform.currentuser.Name">
                 </div>
-                <div class="form-group">
-                    <label for="Kudos" class="col-lg-3 control-label">Kudos :</label>
-                    <div class="col-lg-8">
-                        <select class="form-control" id="kudos" ng-model="vm.redeemform.selectedkudos">
-                            <option ng-value="0">--Select--</option>
-                            <option ng-repeat="optionuser in [1,2,3,4,5]" ng-value="optionuser">{{optionuser}}</option>
-                        </select>
-                    </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':redeemkudosform.comment.$invalid && redeemkudosform.comment.$touched}">
+                <label for="comment" class="col-lg-3 control-label">Comment :</label>
+                <div class="col-lg-8">
+                    <textarea class="form-control" ng-model="redeemform.comment" rows="3" maxlength="100" name="comment" id="comment" placeholder="comment"
+                        required></textarea>
                 </div>
-            </fieldset>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
-    </div>
+                <div class="col-lg-8 col-lg-offset-3">
+                    <span class="help-block has-error" ng-messages="redeemkudosform.comment.$error" ng-if="redeemkudosform.comment.$invalid && redeemkudosform.comment.$touched">
+                        <span ng-message="required">
+                            Comment is required.
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':redeemkudosform.kudos.$invalid && redeemkudosform.kudos.$touched}">
+                <label for="kudos" class="col-lg-3 control-label">Kudos :</label>
+                <div class="col-lg-8">
+                    <select class="form-control" id="kudos" name="kudos" ng-model="vm.redeemform.selectedkudos" selectoption>
+                        <option ng-value="0">--Select--</option>
+                        <option ng-repeat="optionuser in [1,2,3,4,5]" ng-value="optionuser">{{optionuser}}</option>
+                    </select>
+                </div>
+                <div class="col-lg-8 col-lg-offset-3">
+                    <span class="help-block has-error" ng-messages="redeemkudosform.kudos.$error" ng-if="redeemkudosform.kudos.$invalid && redeemkudosform.kudos.$touched">
+                        <span ng-message="selectoption">
+                            Please choose the kudos from the drop down list.
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-lg-4 col-lg-offset-8">
+                <button class="btn btn-primary" type="submit" ng-disabled="redeemkudosform.$invalid">OK</button>
+                <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div class="modal-footer">
+</div>

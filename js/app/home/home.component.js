@@ -6,25 +6,33 @@
         templateUrl: 'js/app/home/home.component.html',
         controllerAs: 'vm',
         controller: [
-            'toastrService','appDataService', homeController
+            'toastrService', 'appDataService', homeController
         ],
         bindings: {
             viewdata: '<'
         },
     });
-    
-    homeController.$inject = ['toastrService','appDataService'];
 
-    function homeController(toastrService,appDataService) {
+    homeController.$inject = ['toastrService', 'appDataService'];
+
+    function homeController(toastrService, appDataService) {
         var vm = this;
-        
 
-        vm.$onInit = function () {            
-           
+
+        vm.$onInit = function () {
+
         }
 
-        vm.$onChanges = function () {
-            vm.viewdata= appDataService.GetAppInitialData();
+        vm.$onChanges = function (changes) {  
+               
+        }
+
+        vm.updateUserRewardData = function () {            
+            appDataService.UpdateRewardInfo();                        
+        };
+
+        vm.updateUserRedeemData=function(){
+            
         }
 
     }

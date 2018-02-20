@@ -4,18 +4,22 @@ var app = angular.module("sampleapp", [
     "ngAnimate",
     "ngMessages",
     "ui.bootstrap",
-    "toastr"
+    "toastr",
+    "ngMockE2E"
 ]);
 
 app.config(["$routeProvider", function ($routeProvider) {
     $routeProvider
         .when("/", {
-            template: "<home viewdata='$resolve.viewdata'></home>",
-            resolve:{
-                viewdata:function(appDataService){          
-                            
+            template: "<home viewdata='$resolve.viewdata' viewdata1='$resolve.viewdata1'></home>",
+            resolve: {
+                viewdata: function (appDataService) {
+
                     return appDataService.GetAppInitialData();
-                } 
+                },
+                viewdata1: function (appDataService) {
+                    appDataService.GetAppInitialData1();
+                }
             }
         })
         .otherwise({ redirectTo: "/" });

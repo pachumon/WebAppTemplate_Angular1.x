@@ -3,8 +3,8 @@
 
     app.factory('appDataService', appDataService);
 
-    appDataService.$inject = ['$http', '$log'];
-    function appDataService($http, $log) {
+    appDataService.$inject = ['$http', '$q', '$log'];
+    function appDataService($http, $q, $log) {
         var response = { Users: [], Comments: [] };
         response.Users.push({ Id: 1, Name: "Jason", KudosCount: 6 });
         response.Users.push({ Id: 2, Name: "Sabuj", KudosCount: 9 });
@@ -24,7 +24,8 @@
 
         var service = {
             GetAppInitialData: GetAppInitialData,
-            UpdateRewardInfo: UpdateRewardInfo
+            UpdateRewardInfo: UpdateRewardInfo,
+            GetAppInitialData1:GetAppInitialData1
         };
 
         return service;
@@ -38,7 +39,7 @@
         function UpdateRewardInfo() {
             var id = 2;
             //the below approach is to remove the object refference and trigger $onChanges on components even when a property alone is modified
-            var users=angular.copy(response.Users);
+            var users = angular.copy(response.Users);
             debugger;
             var modifiedUser = _.find(users, function (input) {
                 return input.Id == id;
@@ -46,9 +47,22 @@
             var modifiedUserIndex = _.findIndex(users, { Id: id });
             if (modifiedUser != undefined) {
                 modifiedUser.KudosCount += 4;
-            }            
+            }
             users[modifiedUserIndex] = modifiedUser;
-            response.Users=users;
+            response.Users = users;
+        }
+
+        function GetAppInitialData1() {
+            $http({ method: 'GET', url: 'kudosApi/getInitialData' }).
+            then(function successcb(response, status, headers, config) {                  
+                $log.info(response.data);                   
+                return response;
+            }).
+            catch(function errorcb(response, status, headers, config) {
+                var val = $q.reject(response);
+                $log.info(val);
+                return val;
+            });
         }
 
 

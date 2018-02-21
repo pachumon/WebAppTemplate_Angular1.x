@@ -9,8 +9,7 @@
             'toastrService', 'appDataService', homeController
         ],
         bindings: {
-            viewdata: '<',
-            viewdata1: '<'
+            viewdata: '<'
         },
     });
 
@@ -21,19 +20,23 @@
 
 
         vm.$onInit = function () {
-            console.log(vm.viewdata1);
+            console.log(vm.viewdata);
         }
 
         vm.$onChanges = function (changes) {
 
         }
 
-        vm.updateUserRewardData = function () {
-            appDataService.UpdateRewardInfo();
-        };
+        vm.updateUserRewardData = function (modalData) {
+            appDataService.UpdateRewardInfo(modalData).then(function (response, status, headers, config) {
+                vm.viewdata = response.data;
+            });
+        }
 
-        vm.updateUserRedeemData = function () {
-
+        vm.updateUserRedeemData = function (modalData) {
+            appDataService.UpdateRedeemInfo(modalData).then(function (response, status, headers, config) {
+                vm.viewdata = response.data;
+            });
         }
 
     }

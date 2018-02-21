@@ -7,7 +7,8 @@
         controllerAs: 'vm',
         bindings: {
             users: '<',
-            updaterewards: '&'
+            updaterewards: '&',
+            updateredeem: '&'
         },
     });
 
@@ -19,8 +20,8 @@
 
         };
 
-        vm.$onChanges = function (changes) {   
-       
+        vm.$onChanges = function (changes) {
+
         }
 
 
@@ -40,8 +41,8 @@
             });
 
             modalInstance.result.then(function (modalData) {
-                //this handles the ok button click of modal dialogue             
-                vm.updaterewards();
+                //this handles the ok button click of modal dialogue                             
+                vm.updaterewards({ $event: modalData });
             }, function () {
                 //this handles the cancel button click of modal dialogue clean up logic
 
@@ -64,9 +65,10 @@
                 }
             });
 
-            modalInstance.result.then(function (selectedItem) {
+            modalInstance.result.then(function (modalData) {
+                
                 //this handles the ok button click of modal dialogue             
-                vm.selected = selectedItem;
+                vm.updateredeem({ $event: modalData });
             }, function () {
                 //this handles the cancel button click of modal dialogue
 

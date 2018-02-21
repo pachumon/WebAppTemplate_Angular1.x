@@ -3,7 +3,8 @@
         <uib-tabset type="pills">
             <uib-tab heading="Reward Summary" class="tabbutton">
                 <div style="padding-top: 20px">              
-                    <rewardssummary users="vm.viewdata.Users" updaterewards="vm.updateUserRewardData($event)"></rewardssummary>
+                    <rewardssummary users="vm.viewdata.Users" updaterewards="vm.updateUserRewardData($event)"
+                    updateredeem="vm.updateUserRedeemData($event)"></rewardssummary>
                 </div>
             </uib-tab>
             <uib-tab heading="Comments" class="tabbutton">

@@ -11,14 +11,10 @@ var app = angular.module("sampleapp", [
 app.config(["$routeProvider", function ($routeProvider) {
     $routeProvider
         .when("/", {
-            template: "<home viewdata='$resolve.viewdata' viewdata1='$resolve.viewdata1'></home>",
-            resolve: {
+            template: "<home viewdata='$resolve.viewdata.data'></home>",
+            resolve: {               
                 viewdata: function (appDataService) {
-
                     return appDataService.GetAppInitialData();
-                },
-                viewdata1: function (appDataService) {
-                    appDataService.GetAppInitialData1();
                 }
             }
         })

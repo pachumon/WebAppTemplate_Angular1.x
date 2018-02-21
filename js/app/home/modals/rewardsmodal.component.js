@@ -34,8 +34,8 @@
       vm.ok();
     };
 
-    vm.ok = function () {
-      vm.close({ $value: 'kabuki' });
+    vm.ok = function () {      
+      vm.close({ $value: vm.rewardsform });
     };
 
     vm.cancel = function () {

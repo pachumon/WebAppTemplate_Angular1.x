@@ -19,7 +19,7 @@ body {
 
 #footer {
     /* Set the fixed height of the footer here */
-    height: 50px;
+    height: 25px;
     background-color: #080808;
     margin-top: 15px;
 }
@@ -155,4 +155,8 @@ body {
 .table td, th {
     text-align: center;
     font-weight:bold;    
+}
+
+blockquote{
+    border-left-color:#808080;
 }

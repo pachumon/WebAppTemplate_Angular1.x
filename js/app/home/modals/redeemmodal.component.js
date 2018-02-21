@@ -34,7 +34,8 @@
         };
     
         vm.ok = function () {
-          vm.close({ $value: '' });
+          
+          vm.close({ $value: vm.redeemform });
         };
     
         vm.cancel = function () {

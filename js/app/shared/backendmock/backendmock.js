@@ -20,11 +20,79 @@
         response.Comments.push({ ProviderId: 1, ReceiverId: 8, Comment: "Great commitement to tasks", ProviderName: "Jason", ReceiverName: "Deepa" });
 
 
-        var apiUrl="kudosApi/getInitialData";
+        var apiUrl = 'kudosApi/';
 
-        $httpBackend.whenGET(apiUrl).respond(function (method, url, data) {
+        $httpBackend.whenGET(apiUrl + 'GetInitialData').respond(function (method, url, data) {
             return [200, response, {}];
         });
+
+        $httpBackend.whenPOST(apiUrl + 'UpdateRewardInfo').respond(function (method, url, data) {
+
+            var modalData = JSON.parse(data);
+
+            //the below approach is to remove the object refference and trigger $onChanges on components even when a property alone is modified
+            //var users = angular.copy(response.Users);
+            //debugger;
+            updateUserReward(modalData);
+            updateRewardComments(modalData);
+            //response.Users = users;
+            return [200, response, {}];
+        });
+
+        var updateUserReward = function (modalData) {
+            var rewardedUserId = modalData.currentuser.Id;
+            var rewardingUserId = modalData.selecteduser;
+            var modifiedUser = _.find(response.Users, function (input) {
+                return input.Id == rewardedUserId;
+            });
+            var modifiedUserIndex = _.findIndex(response.Users, { Id: rewardedUserId });
+            if (modifiedUser != undefined) {
+                modifiedUser.KudosCount += modalData.selectedkudos;
+            }
+            response.Users[modifiedUserIndex] = modifiedUser;
+        }
+
+        var updateRewardComments = function (modalData) {
+            var rewardedUserId = modalData.currentuser.Id;
+            var rewardedUserName = modalData.currentuser.Name;
+            var rewardingUserId = modalData.selecteduser;
+            var rewardingUser = _.find(response.Users, function (input) {
+                return input.Id == rewardingUserId;
+            });
+            response.Comments.push({
+                ProviderId: rewardingUserId,
+                ReceiverId: rewardedUserId,
+                Comment: modalData.comment,
+                ProviderName: rewardingUser.Name,
+                ReceiverName: rewardedUserName
+            });
+        }
+
+
+        $httpBackend.whenPOST(apiUrl + 'UpdateRedeemInfo').respond(function (method, url, data) {
+            
+            var modalData = JSON.parse(data);
+
+            //the below approach is to remove the object refference and trigger $onChanges on components even when a property alone is modified
+            //var users = angular.copy(response.Users);
+            //debugger;
+            updateUserRedeemInfo(modalData);
+            //updateComments(modalData);
+            //response.Users = users;
+            return [200, response, {}];
+        });
+
+        var updateUserRedeemInfo = function (modalData) {
+            var redeemingUserId = modalData.currentuser.Id;
+            var modifiedUser = _.find(response.Users, function (input) {
+                return input.Id == redeemingUserId;
+            });
+            var modifiedUserIndex = _.findIndex(response.Users, { Id: redeemingUserId });
+            if (modifiedUser != undefined) {
+                modifiedUser.KudosCount -= modalData.selectedkudos;
+            }
+            response.Users[modifiedUserIndex] = modifiedUser;
+        }
 
         // Pass through any requests for application files
         $httpBackend.whenGET(/js\/app/).passThrough();

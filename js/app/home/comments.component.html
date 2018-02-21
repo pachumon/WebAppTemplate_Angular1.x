@@ -1,4 +1,4 @@
-<blockquote ng-repeat="comment in vm.comments">
+<blockquote ng-repeat="comment in vm.comments | limitTo:-5">
     <span class="label badge">{{comment.ReceiverName}}</span> {{comment.Comment}}
     <small>
         <cite title="Source Title" class="text-primary">{{comment.ProviderName}}</cite>

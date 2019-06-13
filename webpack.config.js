@@ -47,9 +47,8 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    // Other plugins.
-    // WebpackClearConsole plugin removes all statements beginning with console.
+  plugins: [    
+    // this plugin cleans webpack console before each build
     new CleanTerminalPlugin()
   ]
 };

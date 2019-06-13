@@ -1,19 +1,17 @@
-(function () {
-    'use strict';
+const rewardInfo = function(app) {
+  "use strict";
 
-    app.component('rewardinfo', {
-        templateUrl: 'js/app/home/rewardinfo.component.html',
-        controller: [rewardinfoController],
-        controllerAs: 'vm'        
-    });
+  app.component("rewardinfo", {
+    templateUrl: "js/app/home/rewardinfo.component.html",
+    controller: [rewardinfoController],
+    controllerAs: "vm"
+  });
 
-    rewardinfoController.$inject = [];
-    function rewardinfoController() {
-        var vm = this;
+  rewardinfoController.$inject = [];
+  function rewardinfoController() {
+    var vm = this;
 
-        vm.$onInit = function () {
-
-        };
-
-    }
-})();
+    vm.$onInit = function() {};
+  }
+};
+export default rewardInfo;

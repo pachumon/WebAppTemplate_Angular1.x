@@ -1,13 +1,17 @@
-app.directive("selectoption", function () {
+const selectOption = function(app) {
+  app.directive("selectoption", function() {
     return {
-        restrict: "A",
+      restrict: "A",
 
-        require: "ngModel",
+      require: "ngModel",
 
-        link: function (scope, element, attributes, ngModel) {            
-            ngModel.$validators.selectoption = function (modelValue) {
-                return modelValue > 0;
-            }
-        }
+      link: function(scope, element, attributes, ngModel) {
+        ngModel.$validators.selectoption = function(modelValue) {
+          return modelValue > 0;
+        };
+      }
     };
-});
+  });
+};
+
+export default selectOption;
